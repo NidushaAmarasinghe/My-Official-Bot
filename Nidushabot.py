@@ -56,10 +56,6 @@ def send_help(message):
 def send_about(message):
     bot.send_message(message.chat.id, text="This Is Nidusha Amarasinghe's Official Bot!\nDeverloper-@NidushaAmarasinghe"
 
-@bot.message_handler(commands=["alive"])
-def send_alive(message):
-    bot.send_message(message.chat.id, text="Hey There! Bot Online now. 💃🏻\n♥️Developer: ɳιԃυαԋα αɱαɾαʂιɳɠԋҽ\nSupport: @SlapTaps\nThank You For Using Niduha Official Bot💞") 
-
 @bot.message_handler(commands=["stats"])
 def send_stats(message):
     bot.send_message(message.chat.id, text="💻System Stats💻\n⏳Uptime⏳:-  10 h: 8 m: 58 s.\n🔋Ram Usage🔋 :- 8%\n💾Disk Usage💾 :- 0.441") 
