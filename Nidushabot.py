@@ -56,8 +56,5 @@ def send_help(message):
 def send_about(message):
     bot.send_message(message.chat.id, text="This Is Nidusha Amarasinghe's Official Bot!\nDeverloper-@NidushaAmarasinghe"
 
-@bot.message_handler(commands=["stats"])
-def send_stats(message):
-    bot.send_message(message.chat.id, text="💻System Stats💻\n⏳Uptime⏳:-  10 h: 8 m: 58 s.\n🔋Ram Usage🔋 :- 8%\n💾Disk Usage💾 :- 0.441") 
 
 bot.polling()
