@@ -1,8 +1,8 @@
-import os
-import telebot
+import telebot, requests, json
+from telebot import types
+from os import getenv
 
-
-bot = telebot.TeleBot("5143744746:AAFNtLLvtie6MbvxgT_tbwh1JEviitCLxJY")
+bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 
 
 @bot.message_handler(commands=["start"])
