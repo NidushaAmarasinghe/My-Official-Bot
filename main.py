@@ -7,11 +7,9 @@ if __name__ == "__main__" :
     plugins = dict(
         root="plugins"
     )
-    app = Client(
+    bot = telebot(
         "GTBot",
         bot_token=TOKEN,
-        api_hash=API_HASH,
-        api_id=API_ID,
         plugins=plugins
     )
 
