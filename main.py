@@ -5,9 +5,17 @@ from os import getenv
 bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 
 
+# Markup
+mark1 = telebot.types.InlineKeyboardMarkup()
+mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
+          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
+mark1.add(telebot.types.InlineKeyboardButton(text='🛠️Socure Code🛠️', url'https://github.com/NidushaAmarasinghe/My-Official-Bot')),
+mark1.add(telebot.types.InlineKeyboardButton(text='➕Add To Group➕', url="https://t.me/NidushaOfficial_Bot?startgroup=true")),
+
+
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
-  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap")
+  bot.reply_to(message, "<b>Hey There! This Is @NidushaAmarasinghe's Official Bot</b>\nJoin:-@SlapTap")
    
 @bot.message_handler(commands=["help"])
 def send_message(message):
@@ -24,6 +32,9 @@ def send_welcome(message):
 @bot.message_handler(content_types=["photo", "sticker"])
 def send_content_message(msg):
     bot.reply_to(msg, "That's not a text message!")
+    
+
+    
 
 
 bot.polling()
