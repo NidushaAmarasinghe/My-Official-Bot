@@ -17,7 +17,7 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https:
 mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url="https://t.me/NidushaAmarasinghe")),
 
 mark3 = telebot.types.InlineKeyboardMarkup()
-mark3.add(telebot.types.InlineKeyboardButton(text='❔About❔', callback_data="😘Hey There!💕 This Is @NidushaAmarasinghe's Official Bot😁\nJoin:-@SlapTap"))
+mark3.add(telebot.types.InlineKeyboardButton(text='❔About❔', callback_data="😘Hey There!💕 This Is @NidushaAmarasinghe's Official Bot😁\nJoin:-@SlapTap")),
 
 
 
@@ -36,6 +36,10 @@ def send_welcome(message):
 @bot.message_handler(commands=["about"])
 def send_welcome(message):
   bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark3)
+
+@bot.message_handler(commands=["pic"])
+def send_welcome(message):
+  bot.send_photo(message.chat.id, "https://telegra.ph/file/87297d011cb91b4ec3014.jpg")
   
 @bot.message_handler(content_types=["photo", "sticker"])
 def send_content_message(msg):
