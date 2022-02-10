@@ -1,6 +1,2 @@
-
-build:
-  docker:
-    worker: Nidushabot.py
-run:
-  worker: python3 -m NidushaOfficial_Bot
+pyTelegramBotAPI
+requests
