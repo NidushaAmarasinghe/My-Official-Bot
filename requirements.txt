@@ -1,6 +1,6 @@
 
 build:
   docker:
-    worker: Dockerfile
+    worker: Nidushabot.py
 run:
   worker: python3 -m NidushaOfficial_Bot
