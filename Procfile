@@ -1,1 +1,1 @@
-worker: python3 -m NidushaOfficial_Bot
+worker: python3 - Nidushabot.py
