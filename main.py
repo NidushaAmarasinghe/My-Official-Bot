@@ -9,6 +9,7 @@ bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 mark1 = telebot.types.InlineKeyboardMarkup()
 mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
           telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
+mark1.add(telebot.types.InlineKeyboardButton(text='❔Help❔', url='https://t.me/NidushaOfficial_Bot?startgroup=help'),
 mark1.add(telebot.types.InlineKeyboardButton(text='➕Add To Group➕', url="https://t.me/NidushaOfficial_Bot?startgroup=true")),
 
 mark2 = telebot.types.InlineKeyboardMarkup()
@@ -19,7 +20,7 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
-  bot.reply_to(message, "**Hey There! This Is @NidushaAmarasinghe's Official Bot</b>\nJoin:-@SlapTap**",parse_mode='Markdown', reply_markup=mark1)
+  bot.reply_to(message, "**Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap**",parse_mode='Markdown', reply_markup=mark1)
    
 @bot.message_handler(commands=["help"])
 def send_message(message):
