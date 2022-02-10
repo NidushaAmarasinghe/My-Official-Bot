@@ -16,9 +16,6 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https:
           telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
 mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url="https://t.me/NidushaAmarasinghe")),
 
-mark3 = telebot.types.InlineKeyboardMarkup()
-mark3.add(telebot.types.InlineKeyboardButton(text='❔About❔', query.answer("😘Hey There!💕 This Is @NidushaAmarasinghe's Official Bot😁\nJoin:-@SlapTap")),
-
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -34,7 +31,7 @@ def send_welcome(message):
  
 @bot.message_handler(commands=["about"])
 def send_welcome(message):
-  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark3)
+  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap")
 
 @bot.message_handler(commands=["pic"])
 def send_welcome(message):
