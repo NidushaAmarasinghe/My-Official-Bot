@@ -17,8 +17,6 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https:
 mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url="https://t.me/NidushaAmarasinghe")),
 
 mark3 = telebot.types.InlineKeyboardMarkup()
-mark2.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
-          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
 mark3.add(telebot.types.InlineKeyboardButton(text='❔About❔', callback_data="😘Hey There!💕 This Is @NidushaAmarasinghe's Official Bot😁\nJoin:-@SlapTap")
 
 
