@@ -2,7 +2,7 @@ import telebot, requests, json
 from telebot import types
 from os import getenv
 
-bot = telebot.TeleBot(getenv("BOT_TOKEN"))
+
 if __name__ == "__main__" :
     plugins = dict(
         root="plugins"
