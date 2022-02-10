@@ -35,7 +35,7 @@ def send_welcome(message):
  
 @bot.message_handler(commands=["about"])
 def send_welcome(message):
-  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark3))
+  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark3)
   
 @bot.message_handler(content_types=["photo", "sticker"])
 def send_content_message(msg):
