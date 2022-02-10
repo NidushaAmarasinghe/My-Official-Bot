@@ -9,7 +9,7 @@ bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 mark1 = telebot.types.InlineKeyboardMarkup()
 mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
           telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
-mark1.add(telebot.types.InlineKeyboardButton(text='❔Help❔', url='https://t.me/NidushaOfficial_Bot?startgroup=help'),
+mark1.add(telebot.types.InlineKeyboardButton(text='❔Help❔', url='https://t.me/NidushaOfficial_Bot?startgroup=help')),
 mark1.add(telebot.types.InlineKeyboardButton(text='➕Add To Group➕', url="https://t.me/NidushaOfficial_Bot?startgroup=true")),
 
 mark2 = telebot.types.InlineKeyboardMarkup()
