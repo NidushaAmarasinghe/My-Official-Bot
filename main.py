@@ -15,7 +15,7 @@ mark1.add(telebot.types.InlineKeyboardButton(text='➕Add To Group➕', url="htt
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
-  bot.reply_to(message, "<b>Hey There! This Is @NidushaAmarasinghe's Official Bot</b>\nJoin:-@SlapTap")
+  bot.reply_to(message, "<b>Hey There! This Is @NidushaAmarasinghe's Official Bot</b>\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark1)
    
 @bot.message_handler(commands=["help"])
 def send_message(message):
