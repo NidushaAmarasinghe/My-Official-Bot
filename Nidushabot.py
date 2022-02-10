@@ -1,59 +1,159 @@
-"""
-MIT License
 
-Copyright (c) 2021 Nidusha Amarasinghe
+import logging
+from time import time
+from datetime import datetime
+from NidushaOfficial_Bot.config import BOT_USERNAME, BOT_NAME, ASSISTANT_NAME, OWNER_NAME, UPDATES_CHANNEL, SUPPORT_GROUP
+from NidushaOfficial_Bot.helpers.filters import command
+from pyrogram import Client, filters
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, Chat, CallbackQuery
+from NidushaOfficial_Bot.helpers.decorators import sudo_users_only
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+logging.basicConfig(level=logging.INFO)
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
+START_TIME = datetime.utcnow()
+START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
+TIME_DURATION_UNITS = (
+    ('week', 60 * 60 * 24 * 7),
+    ('day', 60 * 60 * 24),
+    ('hour', 60 * 60),
+    ('min', 60),
+    ('sec', 1)
+)
 
-import telebot, requests, json
-from telebot import types
-from os import getenv
+async def _human_time_duration(seconds):
+    if seconds == 0:
+        return 'inf'
+    parts = []
+    for unit, div in TIME_DURATION_UNITS:
+        amount, seconds = divmod(int(seconds), div)
+        if amount > 0:
+            parts.append('{} {}{}'
+                         .format(amount, unit, "" if amount == 1 else "s"))
+    return ', '.join(parts)
 
-bot = telebot.TeleBot(getenv("BOT_TOKEN"))
 
-# /help command menu
-help = f"""
-Contact Help!\n@NidushaChat_Bot
-"""
+@Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.private & ~filters.edited)
+async def start_(client: Client, message: Message):
+    await message.reply_text(
+        f"""✨ Welcome {message.from_user.first_name} \n
+💭This Is Nidusha Amarasinghe's Official Bot\n**Developer :- @NidushaAmarasinghe**""",
+        reply_markup=InlineKeyboardMarkup(
+            [ 
+                [
+                    InlineKeyboardButton(
+                        "➕ Add me to your Group ➕", url=f"https://t.me/NidushaOfficial_Bot?startgroup=true")
+                ],[
+                    InlineKeyboardButton(
+                        "❔About❔", callback_data="cbhowtouse")
+                ],[
+                    
+                    InlineKeyboardButton(
+                        "💝 Donate", url=f"https://t.me/NidushaAmarasinghe")
+                ],[
+                    InlineKeyboardButton(
+                        "🧑‍💻Support Group🧑‍💻", url=f"https://t.me/SlapTaps"
+                    ),
+                    InlineKeyboardButton(
+                        "🔁Update Channel🔁", url=f"https://t.me/SlapTaps")
+                ],[
+                    InlineKeyboardButton(
+                        "🛠️Source Code🛠️", url="https://github.com/NidushaAmarasinghe/My-Official-Bot"
+                    )
+                ]
+            ]
+        ),
+     disable_web_page_preview=True
+    )
 
-# Markup
-mark1 = telebot.types.InlineKeyboardMarkup()
-mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/slaptap'),
-          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/slaptaps')),
-mark1.add(telebot.types.InlineKeyboardButton(text='➕Add Me To A Group➕', url="http://t.me/NidushaOfficial_Bot?startgroup=new")),
-mark1.add(telebot.types.InlineKeyboardButton(text='🔰Github🔰', url='https://github.com/NidushaAmarasinghe')),
 
-mark2 = telebot.types.InlineKeyboardMarkup()
-mark2.add(telebot.types.InlineKeyboardButton(text='➕Add Me To A Group➕', url="http://t.me/NidushaOfficial_Bot?startgroup=new"),
-          telebot.types.InlineKeyboardButton(text='🔰Github🔰', url='https://github.com/NidushaAmarasinghe')),
-# Commands
-@bot.message_handler(commands=['start'])
-def send_start(message):
-   bot.send_message(message.chat.id, text="💕Hi There! 😁Welcome To Nidusha Official Bot😘\nJoin @SlapTap",parse_mode='Markdown', reply_markup=mark1)
+@Client.on_message(command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+async def start(client: Client, message: Message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+    await message.reply_text(
+        f"""✅Hey There! Nidusha Official Bot Is Running😘 **uptime:**</b> `{uptime}`""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "✨ Group", url=f"https://t.me/SlapTaps"
+                    ),
+                    InlineKeyboardButton(
+                        "📣 Channel", url=f"https://t.me/SlapTap"
+                    )
+                ]
+            ]
+        )
+    )
 
-@bot.message_handler(commands=["help"])
-def send_help(message):
-    bot.send_message(message.chat.id, text="Contact Help!\n@NidushaChat_Bot") 
+@Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+async def help(client: Client, message: Message):
+    await message.reply_text(
+        f"""Do You Want Help❔""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                  InlineKeyboardButton(
+                        "🧑‍💻Support Group🧑‍💻", url=f"https://t.me/SlapTaps"
+                    ),
+                    InlineKeyboardButton(
+                        "🔁Support Channel🔁", url=f"https://t.me/SlapTap"
+                    )
+                ]
+            ]
+        ),
+    )
 
-@bot.message_handler(commands=["about"])
-def send_about(message):
-    bot.send_message(message.chat.id, text="This Is Nidusha Amarasinghe's Official Bot!\nDeverloper-@NidushaAmarasinghe"
+@Client.on_message(command(["help", f"help@{BOT_USERNAME}"]) & filters.private & ~filters.edited)
+async def help_(client: Client, message: Message):
+    await message.reply_text(
+        f"""Do You Want Help❔""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                   InlineKeyboardButton(
+                        "🧑‍💻Support Group🧑‍💻", url=f"https://t.me/SlapTaps"
+                    ),
+                    InlineKeyboardButton(
+                        "🔁Support Channel🔁", url=f"https://t.me/SlapTap"
+                    )
+                ]
+            ]
+        )
+    )
 
-bot.polling()
+
+@Client.on_message(command(["about", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
+async def ping_pong(client: Client, message: Message):
+    start = time()
+    m_reply = await message.reply_text("pinging...")
+    delta_ping = time() - start
+    await m_reply.edit_text(
+        "Hey There! This Is @NidushaAmarasinghe's Official Bot\n"
+         reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                   InlineKeyboardButton(
+                        "🧑‍💻Support Group🧑‍💻", url=f"https://t.me/SlapTaps"
+                    ),
+                    InlineKeyboardButton(
+                        "🔁Support Channel🔁", url=f"https://t.me/SlapTap"
+                    )
+                ]
+            ]
+        )
+    )
+
+@Client.on_message(command(["alive", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
+@sudo_users_only
+async def get_uptime(client: Client, message: Message):
+    current_time = datetime.utcnow()
+    uptime_sec = (current_time - START_TIME).total_seconds()
+    uptime = await _human_time_duration(int(uptime_sec))
+    await message.reply_text(
+        "Hey There! Bot Online now. 💃🏻♥️\n**Developer:** @NidushaAmarasinghe\n**Official Website:https://amdaniwasa.com**\nThank You For Using **Nidusha Official Bot**"
+        f"• **uptime:** `{uptime}`\n"
+        f"• **start time:** `{START_TIME_ISO}`"
+    )
