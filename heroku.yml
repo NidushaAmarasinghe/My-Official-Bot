@@ -1,5 +1,5 @@
 build:
   docker:
-    worker: Nidushabot.py
+    worker: main.py
 run:
-  worker: python3 -m NidushaOfficial_Bot
+  worker: python3 - main.py
