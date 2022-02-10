@@ -2,18 +2,6 @@ import telebot, requests, json
 from telebot import types
 from os import getenv
 
-
-if __name__ == "__main__" :
-    plugins = dict(
-        root="plugins"
-    )
-    bot = telebot(
-        "GTBot",
-        bot_token=TOKEN,
-        plugins=plugins
-    )
-
-
 # Markup
 mark1 = telebot.types.InlineKeyboardMarkup()
 mark1.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
@@ -40,7 +28,7 @@ def send_welcome(message):
  
 @bot.message_handler(commands=["about"])
 def send_welcome(message):
-  bot.reply_to(message, "Hey There! This Is @NidushaAmarasinghe's Official Bot\nJoin:-@SlapTap")
+  bot.reply_to(message, "📕 ᴀʙᴏᴜᴛ ᴍᴇ\n\n○ ᴍʏ ɴᴀᴍᴇ : Nidusha Official ʙᴏᴛ⚡️ (http://t.me/NidushaOfficial_Bot)\n○ ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ\n○ ғʀᴀᴍᴇᴡᴏʀᴋ: ᴘʏʀᴏɢʀᴀᴍ (https://docs.pyrogram.org/)\n○ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ :🔐/n○ ᴠᴇʀsɪᴏɴ : 5.1\n○ ᴄʀᴇᴀᴛᴏʀ : @NidushaAmarasinghe\nJoin:-@SlapTap")
 
 @bot.message_handler(commands=["pic"])
 def send_welcome(message):
