@@ -34,8 +34,8 @@ def send_welcome(message):
 def send_welcome(message):
   await bot.reply_photo(
        chat_id=message.chat.id,
-       photo=https://telegra.ph/file/87297d011cb91b4ec3014.jpg,
-       caption=hii
+       photo='https://telegra.ph/file/87297d011cb91b4ec3014.jpg',
+       caption='hii'
   
 @bot.message_handler(content_types=["photo", "sticker"])
 def send_content_message(msg):
