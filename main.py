@@ -13,6 +13,10 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https:
           telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
 mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url="https://t.me/NidushaAmarasinghe")),
 
+mark3 = telebot.types.InlineKeyboardMarkup()
+mark3.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
+          telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
+mark3.add(telebot.types.inlinekeyboardButton('❔About❔',query.answer("Hi ",show_alert=true)),
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
@@ -28,7 +32,7 @@ def send_welcome(message):
  
 @bot.message_handler(commands=["about"])
 def send_welcome(message):
-  bot.reply_to(message, "📕 ᴀʙᴏᴜᴛ ᴍᴇ\n\n○ ᴍʏ ɴᴀᴍᴇ : Nidusha Official ʙᴏᴛ⚡️ (http://t.me/NidushaOfficial_Bot)\n○ ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ\n○ ғʀᴀᴍᴇᴡᴏʀᴋ: ᴘʏʀᴏɢʀᴀᴍ (https://docs.pyrogram.org/)\n○ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ :🔐/n○ ᴠᴇʀsɪᴏɴ : 5.1\n○ ᴄʀᴇᴀᴛᴏʀ : @NidushaAmarasinghe\nJoin:-@SlapTap")
+  bot.reply_to(message, "📕 ᴀʙᴏᴜᴛ ᴍᴇ\n\n○ ᴍʏ ɴᴀᴍᴇ : Nidusha Official ʙᴏᴛ⚡️ (http://t.me/NidushaOfficial_Bot)\n○ ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ\n○ ғʀᴀᴍᴇᴡᴏʀᴋ: ᴘʏʀᴏɢʀᴀᴍ (https://docs.pyrogram.org/)\n○ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ :🔐/n○ ᴠᴇʀsɪᴏɴ : 5.1\n○ ᴄʀᴇᴀᴛᴏʀ : @NidushaAmarasinghe\nJoin:-@SlapTap",parse_mode='Markdown', reply_markup=mark3)
 
 @bot.message_handler(commands=["pic"])
 def send_welcome(message):
