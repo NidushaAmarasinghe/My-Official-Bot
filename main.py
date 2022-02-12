@@ -16,7 +16,7 @@ mark2.add(telebot.types.InlineKeyboardButton(text='🛠️Developer🛠️', url
 mark3 = telebot.types.InlineKeyboardMarkup()
 mark3.add(telebot.types.InlineKeyboardButton(text='🔁Updates🔁', url='https://t.me/SlapTap'),
           telebot.types.InlineKeyboardButton(text='🧑‍💻Support🧑‍💻', url='https://t.me/SlapTaps')),
-mark3.add(telebot.types.inlinekeyboardButton('❔About❔',query.answer("Hi ",show_alert=true)),
+mark3.add(telebot.types.InlineKeyboardButton('❔About❔',query.answer("Hi ",show_alert=true)),
 
 @bot.message_handler(commands=["start"])
 def send_welcome(message):
